@@ -21,32 +21,16 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class StarAwake extends Application {
-    // Criando o objecto Pane
 
     Pane root = new Pane();
-    // Criando o objecto scene
-    Scene scene = new Scene(root, 600, 300);
-    Canvas canvas = new Canvas(600, 300);
+    Scene scene = new Scene(root, 1024, 700);
+    Canvas canvas = new Canvas(1024, 700);
     GraphicsContext ctx = canvas.getGraphicsContext2D();
-    Ellipse elipse = new Ellipse(30, 30);
     Circle circle = new Circle(20);
     Rectangle quadr = new Rectangle(40, 40);
     Rectangle rect = new Rectangle(100, 40);
     double x = 0, y = 0;
     private ArrayList< Shape> nosObjct;
-    // /////////////////////////////////////////////////////////////////////////
-
-    public void Informe() {
-        ctx.setFont(Font.font("Arial", FontWeight.BOLD, 13));
-        ctx.setFill(Color.RED);
-        ctx.fillText("Por: ", 200, 230);
-        ctx.setFill(Color.BLUE);
-        ctx.fillText("Samuel Lima", 240, 230);
-        ctx.setFill(Color.BLACK);
-        ctx.fillText("sa_sp10@hotmail.com", 200, 245);
-        ctx.setFill(Color.RED);
-        ctx.fillText(" MUITO OBRIGADO", 250, 280);
-    }
     // /////////////////////////////////////////////////////////////////////////
 
     public void arrastaItens(final Shape figuras) {
@@ -55,7 +39,7 @@ public class StarAwake extends Application {
             public void handle(MouseEvent mouseEvent) {
                 x = figuras.getLayoutX() - mouseEvent.getSceneX();
                 y = figuras.getLayoutY() - mouseEvent.getSceneY();
-                figuras.setCursor(Cursor.CROSSHAIR);
+                figuras.setCursor(Cursor.CLOSED_HAND);
             }
         });
         figuras.setOnMouseReleased(new EventHandler< MouseEvent>() {
@@ -68,18 +52,18 @@ public class StarAwake extends Application {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getSceneX() > 50
-                        && mouseEvent.getSceneX() < 550) {
+                        && mouseEvent.getSceneX() < 1024) {
                     figuras.setLayoutX(mouseEvent.getSceneX() + x);
                 }
                 if (mouseEvent.getSceneY() > 50
-                        && mouseEvent.getSceneY() < 250) {
+                        && mouseEvent.getSceneY() < 700) {
                     figuras.setLayoutY(mouseEvent.getSceneY() + y);
                 }
                 if (mouseEvent.getSceneX() == 50
-                        || mouseEvent.getSceneX() == 550) {
+                        || mouseEvent.getSceneX() == 1024) {
                 }
                 if (mouseEvent.getSceneY() == 50
-                        || mouseEvent.getSceneY() == 250) {
+                        || mouseEvent.getSceneY() == 700) {
                 }
             }
         });
@@ -88,12 +72,6 @@ public class StarAwake extends Application {
 
     public void cria_figuras() {
         nosObjct = new ArrayList<>();
-        nosObjct.add(elipse);
-        elipse.setCenterX(100.0f);
-        elipse.setCenterY(150.0f);
-        elipse.setRadiusX(40.0f);
-        elipse.setRadiusY(20.0f);
-        elipse.setFill(Color.BLUE);
         nosObjct.add(circle);
         circle.setCenterX(230.0f);
         circle.setCenterY(150.0f);
@@ -114,19 +92,10 @@ public class StarAwake extends Application {
     final long startNanoTime = System.nanoTime();
 
     public void start(Stage stage) {
-        // Configurando um título para o stage
-        stage.setTitle("JAVAFX - ARRASTANDO OBJETOS\n"
-                + " E LIMITANDO O ALCANCE DO MOUSE");
+
+        stage.setTitle("Frist stage");
         // Criando uma moldura retangular em canvas
-        ctx.setStroke(Color.rgb(255, 0, 255));
-        ctx.setLineWidth(10.0);
-        ctx.strokeRoundRect(5, 5, 590, 290, 5, 5);
-        ctx.setFont(Font.font("Helvetica", FontWeight.BOLD,
-                FontPosture.ITALIC, 20));
-        ctx.setFill(Color.RED);
-        ctx.fillText("JAVAFX - ARRASTANDO OBJETOS E\n"
-                + "LIMITANDO O ALCANCE DO MOUSE", 150, 40);
-        Informe();
+
         cria_figuras();
         root.getChildren().add(canvas);
         root.getChildren().addAll(nosObjct);
@@ -134,12 +103,11 @@ public class StarAwake extends Application {
         stage.show();
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
-                double t = (currentNanoTime - startNanoTime) / 1000000000.0; 
+                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
                 System.out.println(t);
-            
-                    quadr.setLayoutX(t);
-                
-                
+
+                quadr.setRotate(t);
+
             }
         }.start();
     }
