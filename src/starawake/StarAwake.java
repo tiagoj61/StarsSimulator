@@ -1,5 +1,7 @@
 package starawake;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -8,20 +10,18 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class StarAwake extends Application {
 
+    boolean isgrab = false;
     Pane root = new Pane();
     Scene scene = new Scene(root, 1024, 700);
     Canvas canvas = new Canvas(1024, 700);
@@ -36,6 +36,7 @@ public class StarAwake extends Application {
         figuras.setOnMousePressed(new EventHandler< MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                isgrab = true;
                 x = figuras.getLayoutX() - mouseEvent.getSceneX();
                 y = figuras.getLayoutY() - mouseEvent.getSceneY();
                 figuras.setCursor(Cursor.CLOSED_HAND);
@@ -44,7 +45,9 @@ public class StarAwake extends Application {
         figuras.setOnMouseReleased(new EventHandler< MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+             
                 figuras.setCursor(Cursor.HAND);
+                isgrab = false;
             }
         });
         figuras.setOnMouseDragged(new EventHandler< MouseEvent>() {
@@ -66,6 +69,7 @@ public class StarAwake extends Application {
                 }
             }
         });
+
     }
 
     public void cria_figuras() {
@@ -86,13 +90,21 @@ public class StarAwake extends Application {
             arrastaItens(moveFiguras);
         }
     }
+
     final long startNanoTime = System.nanoTime();
 
-    public void start(Stage stage) {
+    public void alterarpossi(Rectangle rect, double t) {
+        if (!isgrab) {
+            rect.setTranslateX(rect.getTranslateX() + t/10);// usar a posição da figura
+            rect.setTranslateY(rect.getTranslateY() + t/10);// usar a posição da figura
+        }
+    }
 
+    public void start(Stage stage) throws FileNotFoundException {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
         stage.setTitle("Frist stage");
         // Criando uma moldura retangular em canvas
-
+        Image earth = new Image(new FileInputStream("D:\\Pc\\Documents\\NetBeansProjects\\StarAwake\\src\\starawake\\download.png"));
         cria_figuras();
         root.getChildren().add(canvas);
         root.getChildren().addAll(nosObjct);
@@ -101,9 +113,12 @@ public class StarAwake extends Application {
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+                
                 System.out.println(quadr.getBoundsInParent().intersects(rect.getBoundsInParent()));
-                quadr.setRotate(t);
 
+                quadr.setRotate(t);
+                alterarpossi(rect, t);
+             
             }
         }.start();
     }
