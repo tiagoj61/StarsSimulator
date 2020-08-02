@@ -31,7 +31,6 @@ public class StarAwake extends Application {
     Rectangle rect = new Rectangle(100, 40);
     double x = 0, y = 0;
     private ArrayList< Shape> nosObjct;
-    // /////////////////////////////////////////////////////////////////////////
 
     public void arrastaItens(final Shape figuras) {
         figuras.setOnMousePressed(new EventHandler< MouseEvent>() {
@@ -68,7 +67,6 @@ public class StarAwake extends Application {
             }
         });
     }
-    // /////////////////////////////////////////////////////////////////////////
 
     public void cria_figuras() {
         nosObjct = new ArrayList<>();
@@ -88,7 +86,6 @@ public class StarAwake extends Application {
             arrastaItens(moveFiguras);
         }
     }
-    // /////////////////////////////////////////////////////////////////////////
     final long startNanoTime = System.nanoTime();
 
     public void start(Stage stage) {
@@ -104,14 +101,12 @@ public class StarAwake extends Application {
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-                System.out.println(t);
-
+                System.out.println(quadr.getBoundsInParent().intersects(rect.getBoundsInParent()));
                 quadr.setRotate(t);
 
             }
         }.start();
     }
-    // /////////////////////////////////////////////////////////////////////////
 
     public static void main(String[] args) {
         launch(args);
