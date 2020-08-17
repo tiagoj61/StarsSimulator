@@ -1,0 +1,13 @@
+git config --global user.name "Nome Sobrenome"   
+git config --global user.email "seu_email@email.com"
+
+ssh-keygen -t rsa -C "seu_email@email.com"
+notepad ~/.ssh/id_rsa.pub
+Agora no GitHub, vá em “Settings” e depois “SSH and GPG Keys”. new e cole
+ssh -T git@github.com//testar
+
+git clone ssh
+git checkout -b pctiago
+git submodule add urlpc nomenogithub
+git commit -m ""
+git push origin pctiago
