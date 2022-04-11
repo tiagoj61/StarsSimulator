@@ -7,36 +7,46 @@ import java.util.ResourceBundle;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import tiago.j61.starsimulator.controller.App;
 import tiago.j61.starsimulator.dao.UsuarioDao;
-import tiago.j61.starsimulator.model.Usuario;
 
-public class MainPageController implements Initializable {
+public class MainController implements Initializable {
 	private UsuarioDao usuarioDao;
 	private ObservableList<String> set = FXCollections.observableArrayList();
 
 	@FXML
-	private void switchToSecondary() throws IOException {
-		usuarioDao = new UsuarioDao();
-		System.out.println(usuarioDao);
-		set.add("teste");
-		// usuarioDao.salvarAtualizar(new Usuario());
-		// App.setRoot("secondary");
-	}
+	private Button login_but;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		set.addListener(new InvalidationListener() {
-
+			
 			@Override
 			public void invalidated(Observable observable) {
 				System.out.println("aQUIIi");
 			}
 		});
 		// TODO Auto-generated method stub
-
+		
 	}
+	@FXML
+	private void switchToLogin() throws IOException {
+		//usuarioDao = new UsuarioDao();
+		System.out.println(usuarioDao);
+		set.add("teste");
+		App.setRoot("/tiago/j61/login_page");
+	}
+	@FXML
+	private void switchToSign() throws IOException {
+		usuarioDao = new UsuarioDao();
+		System.out.println(usuarioDao);
+		set.add("teste");
+		App.setRoot("/tiago/j61/sign_page");
+	}
+
 }

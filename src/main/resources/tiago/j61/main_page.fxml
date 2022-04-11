@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="403.0" prefWidth="586.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tiago.j61.starsimulator.view.MainPageController">
+<VBox alignment="CENTER" prefHeight="403.0" prefWidth="586.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tiago.j61.starsimulator.view.MainController">
    <children>
       <GridPane prefHeight="397.0" prefWidth="594.0">
         <columnConstraints>
@@ -32,12 +32,12 @@
             </BorderPane>
             <BorderPane prefHeight="121.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <center>
-                  <Button fx:id="primaryButton1" onAction="#switchToSecondary" text="Login" BorderPane.alignment="CENTER" />
+                  <Button id="login_but" fx:id="login_but" onAction="#switchToLogin" text="Login" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <BorderPane prefHeight="121.0" prefWidth="246.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <center>
-                  <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Cadastrar" BorderPane.alignment="CENTER" />
+                  <Button id="sign_but" fx:id="sign_but" onAction="#switchToSign" text="Cadastrar" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children>
