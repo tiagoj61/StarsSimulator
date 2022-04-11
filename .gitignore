@@ -1,6 +1,6 @@
 *.classpath
 *.project
-*.xml
+build.xml
 *.mf
 .settings
 build
