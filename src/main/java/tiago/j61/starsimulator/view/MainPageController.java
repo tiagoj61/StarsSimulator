@@ -14,28 +14,29 @@ import javafx.fxml.Initializable;
 import tiago.j61.starsimulator.dao.UsuarioDao;
 import tiago.j61.starsimulator.model.Usuario;
 
-public class PrimaryController implements Initializable{
+public class MainPageController implements Initializable {
 	private UsuarioDao usuarioDao;
-private ObservableList<String> set= FXCollections.observableArrayList();
+	private ObservableList<String> set = FXCollections.observableArrayList();
+
 	@FXML
 	private void switchToSecondary() throws IOException {
 		usuarioDao = new UsuarioDao();
 		System.out.println(usuarioDao);
 		set.add("teste");
-		//usuarioDao.salvarAtualizar(new Usuario());
+		// usuarioDao.salvarAtualizar(new Usuario());
 		// App.setRoot("secondary");
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		set.addListener(new InvalidationListener() {
-			
+
 			@Override
 			public void invalidated(Observable observable) {
 				System.out.println("aQUIIi");
-				}
+			}
 		});
 		// TODO Auto-generated method stub
-		
+
 	}
 }

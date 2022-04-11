@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="403.0" prefWidth="586.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tiago.j61.starsimulator.view.PrimaryController">
+<VBox alignment="CENTER" prefHeight="403.0" prefWidth="586.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tiago.j61.starsimulator.view.MainPageController">
    <children>
       <GridPane prefHeight="397.0" prefWidth="594.0">
         <columnConstraints>
