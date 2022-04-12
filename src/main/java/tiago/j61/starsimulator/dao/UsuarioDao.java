@@ -3,10 +3,27 @@ package tiago.j61.starsimulator.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import tiago.j61.starsimulator.model.Usuario;
 
 public class UsuarioDao {
+	private static UsuarioDao usuarioDao;
+	private UsuarioDao() {
+	}
+	public synchronized static UsuarioDao getUsuarioDao() {
+		if (usuarioDao == null)
+			usuarioDao = new UsuarioDao();
+		return usuarioDao;
+	}
+	
+	public Usuario findByUserName(String userName) {
+		EntityManager em = Conexao.getEntityManager();
+		StringBuilder sql = new StringBuilder("from usuario where username='?' ");
+		return (Usuario) em.createQuery(sql.toString()).setParameter(1, userName).getSingleResult();
+	}
+
 	public void salvarAtualizar(Usuario usuario) {
 		EntityManager em = Conexao.getEntityManager();
 		em.getTransaction().begin();
