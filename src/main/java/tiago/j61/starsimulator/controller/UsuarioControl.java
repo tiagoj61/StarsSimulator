@@ -19,7 +19,7 @@ public class UsuarioControl extends Application {
 	private UsuarioDao usuarioDao;
 
 	public UsuarioControl() {
-		usuarioDao = new UsuarioDao();
+		//usuarioDao = new UsuarioDao();
 		novo();
 		pesquisar();
 	}

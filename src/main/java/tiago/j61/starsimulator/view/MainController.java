@@ -37,13 +37,14 @@ public class MainController implements Initializable {
 	@FXML
 	private void switchToLogin() throws IOException {
 		//usuarioDao = new UsuarioDao();
+		UsuarioDao.getUsuarioDao().findByUserName("");
 		System.out.println(usuarioDao);
-		set.add("teste");
-		App.setRoot("/tiago/j61/login_page");
+	//	set.add("teste");
+		//App.setRoot("/tiago/j61/login_page");
 	}
 	@FXML
 	private void switchToSign() throws IOException {
-		usuarioDao = new UsuarioDao();
+		//usuarioDao = new UsuarioDao();
 		System.out.println(usuarioDao);
 		set.add("teste");
 		App.setRoot("/tiago/j61/sign_page");

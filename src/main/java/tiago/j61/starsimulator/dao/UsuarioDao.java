@@ -20,8 +20,9 @@ public class UsuarioDao {
 	
 	public Usuario findByUserName(String userName) {
 		EntityManager em = Conexao.getEntityManager();
-		StringBuilder sql = new StringBuilder("from usuario where username='?' ");
-		return (Usuario) em.createQuery(sql.toString()).setParameter(1, userName).getSingleResult();
+		StringBuilder sql = new StringBuilder("select aggkind from pg_aggregate");
+		System.out.println(em.createNativeQuery(sql.toString()).getResultList().size());
+		return (Usuario) new Usuario();
 	}
 
 	public void salvarAtualizar(Usuario usuario) {
