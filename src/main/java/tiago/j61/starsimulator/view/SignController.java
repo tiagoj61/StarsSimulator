@@ -26,9 +26,10 @@ public class SignController implements Initializable {
 
 	@FXML
 	private void registerUser() throws IOException {
+		progress_label= new ProgressIndicator();
 		progress_label.setVisible(true);
-		if (usuarioBo.validUser(usuario_input.getText(), senha_input.getText()))
-			App.setRoot("primary");
+		if (usuarioBo.insert(usuario_input.getText(), senha_input.getText())!=null)
+			App.setRoot("/tiago/j61/main_page");
 		progress_label.setVisible(false);
 	}
 
